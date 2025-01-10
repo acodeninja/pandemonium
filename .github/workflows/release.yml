@@ -55,15 +55,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: 🏗️ build release
-        run: |
-          npm run build:release:${{ matrix.build.target }}
-          mkdir -p releases/
+        run: npm run build:release:${{ matrix.build.target }}
       - name: 🚛 move apple bundles
         if: matrix.build.target == 'macos'
-        run: mv src-tauri/**/*.dmg releases/
+        run: |
+          mkdir -p releases/
+          mv src-tauri/**/*.dmg releases/
       - name: 🚛 move linux bundles
         if: matrix.build.target == 'linux'
         run: |
+          mkdir -p releases/
           mv src-tauri/**/*.deb releases/
           mv src-tauri/**/*.rpm releases/
           mv src-tauri/**/*.AppImage releases/
