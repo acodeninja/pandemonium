@@ -17,7 +17,7 @@ export default {
             {
                 assets: [
                     {
-                        path: "release/*"
+                        path: "releases/*"
                     },
                 ],
             },
