@@ -1,6 +1,10 @@
 name: 🚀 release
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+      - next
 
 permissions:
   contents: write
