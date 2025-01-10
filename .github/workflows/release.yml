@@ -83,3 +83,6 @@ jobs:
         with:
           name: ${{ matrix.build.target }}-${{ github.run_id }}
           path: releases/
+      - name: 🧼 tidy up
+        run: |
+          rm -r src-tauri/target/**/release/bundle
