@@ -27,6 +27,10 @@ jobs:
         uses: actions/checkout@v4
       - name: 🧰 install toolchain
         uses: asdf-vm/actions/install@v3
+      - name: ⚙️ install macos dependencies
+        if: matrix.build.target == 'macos'
+        run: |
+          brew install tree
       - name: ⚙️ install linux dependencies
         if: matrix.build.target == 'linux'
         run: |
