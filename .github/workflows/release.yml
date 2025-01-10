@@ -2,6 +2,11 @@ name: 🚀 release
 
 on: [push]
 
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
 jobs:
   build:
     name: 🏗️ build for ${{ matrix.build.target }}
