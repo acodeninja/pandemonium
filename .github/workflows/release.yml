@@ -54,6 +54,16 @@ jobs:
           echo "Found next release: $(cat package.json | jq -rc '.version')"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: 🗄️ build cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            src-tauri/target/
+          key: ${{ matrix.build.target }}-${{ hashFiles('**/Cargo.lock') }}
       - name: 🏗️ build release
         run: npm run build:release:${{ matrix.build.target }}
       - name: 🚛 move apple bundles
