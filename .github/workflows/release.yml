@@ -29,8 +29,7 @@ jobs:
         uses: asdf-vm/actions/install@v3
       - name: ⚙️ install macos dependencies
         if: matrix.build.target == 'macos'
-        run: |
-          brew install tree
+        run: echo "nothing to install"
       - name: ⚙️ install linux dependencies
         if: matrix.build.target == 'linux'
         run: |
@@ -45,8 +44,7 @@ jobs:
             libayatana-appindicator3-dev \
             librsvg2-dev \
             xdg-utils \
-            jq \
-            tree
+            jq
       - name: ⚙️ install dependencies
         run: npm clean-install
       - name: 🎯 install target
@@ -75,8 +73,6 @@ jobs:
         if: matrix.build.target == 'macos'
         run: |
           mkdir -p releases/
-          ls
-          tree src-tauri/target/**/bundle/
 #          mv src-tauri/**/*.dmg releases/
 #      - name: 🚛 move linux bundles
 #        if: matrix.build.target == 'linux'
