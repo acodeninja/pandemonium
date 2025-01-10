@@ -69,7 +69,7 @@ jobs:
           key: ${{ matrix.build.target }}-${{ hashFiles('**/Cargo.lock') }}
       - name: 🏗️ build release
         run: npm run build:release:${{ matrix.build.target }}
-      - name: 🚛 move apple bundles
+      - name: 🚛 move macos bundles
         if: matrix.build.target == 'macos'
         run: |
           mkdir -p releases/
@@ -78,14 +78,19 @@ jobs:
         if: matrix.build.target == 'linux'
         run: |
           mkdir -p releases/
-          mv src-tauri/**/*.deb releases/
-          mv src-tauri/**/*.rpm releases/
-          mv src-tauri/**/*.AppImage releases/
+          mv src-tauri/target/x86_64-unknown-linux-gnu/release/bundle/deb/pandemonium_*.deb releases/
+          mv src-tauri/target/x86_64-unknown-linux-gnu/release/bundle/rpm/pandemonium-*.rpm releases/
+          mv src-tauri/target/x86_64-unknown-linux-gnu/release/bundle/appimage/pandemonium_*.AppImage releases/
       - name: 📤 upload assets
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.build.target }}-${{ github.run_id }}
           path: releases/
-      - name: 🧼 tidy up
+      - name: 🧼 tidy up macos
+        if: matrix.build.target == 'macos'
         run: |
-          rm -r src-tauri/target/**/release/bundle
+          rm -r src-tauri/target/universal-apple-darwin/release/bundle
+      - name: 🧼 tidy up linux
+        if: matrix.build.target == 'linux'
+        run: |
+          rm -r src-tauri/target/x86_64-unknown-linux-gnu/release/bundle
