@@ -73,19 +73,19 @@ jobs:
         if: matrix.build.target == 'macos'
         run: |
           mkdir -p releases/
-#          mv src-tauri/**/*.dmg releases/
-#      - name: 🚛 move linux bundles
-#        if: matrix.build.target == 'linux'
-#        run: |
-#          mkdir -p releases/
-#          mv src-tauri/**/*.deb releases/
-#          mv src-tauri/**/*.rpm releases/
-#          mv src-tauri/**/*.AppImage releases/
-#      - name: 📤 upload assets
-#        uses: actions/upload-artifact@v4
-#        with:
-#          name: ${{ matrix.build.target }}-${{ github.run_id }}
-#          path: releases/
+          mv src-tauri/target/universal-apple-darwin/release/bundle/dmg/pandemonium_*.dmg releases/
+      - name: 🚛 move linux bundles
+        if: matrix.build.target == 'linux'
+        run: |
+          mkdir -p releases/
+          mv src-tauri/**/*.deb releases/
+          mv src-tauri/**/*.rpm releases/
+          mv src-tauri/**/*.AppImage releases/
+      - name: 📤 upload assets
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.build.target }}-${{ github.run_id }}
+          path: releases/
       - name: 🧼 tidy up
         run: |
           rm -r src-tauri/target/**/release/bundle
