@@ -17,8 +17,7 @@ export default {
             {
                 assets: [
                     {
-                        label: "macOS Universal DMG",
-                        path: "src-tauri/target/universal-apple-darwin/release/bundle/dmg/*.dmg"
+                        path: "release/*"
                     },
                 ],
             },

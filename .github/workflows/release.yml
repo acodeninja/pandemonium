@@ -94,3 +94,21 @@ jobs:
         if: matrix.build.target == 'linux'
         run: |
           rm -r src-tauri/target/x86_64-unknown-linux-gnu/release/bundle
+
+  publish:
+    name: 🚀 publish release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: asdf-vm/actions/install@v3
+      - run: npm clean-install
+      - name: 📥 download assets
+        uses: actions/download-artifact@v4
+        with:
+          path: releases/
+          merge-multiple: true
+      - run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
