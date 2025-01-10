@@ -6,6 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:release": "npm run init:targets && npm run build:release:macos",
+    "build:release:macos": "npm run tauri build -- --target universal-apple-darwin",
+    "init:targets": "npm run init:targets:macos",
+    "init:targets:macos": "rustup target add x86_64-apple-darwin aarch64-apple-darwin",
     "preview": "vite preview",
     "tauri": "tauri",
     "prepare": "husky"

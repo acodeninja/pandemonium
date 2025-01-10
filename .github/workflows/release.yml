@@ -1,0 +1,32 @@
+name: 🚀 release
+
+on: [push]
+
+jobs:
+  build:
+    name: 🏗️ build for ${{ matrix.build.target }}
+    runs-on: ${{ matrix.build.runner }}
+    strategy:
+      matrix:
+        build:
+          - target: macos
+            runner: macos-latest
+    steps:
+      - name: 📥 checkout
+        uses: actions/checkout@v4
+      - name: 🧰 install toolchain
+        uses: asdf-vm/actions/install@v3
+      - name: ⚙️ install dependencies
+        run: npm clean-install
+      - name: 🎯 install target
+        run: npm run init:targets:${{ matrix.build.target }}
+      - name: 🏗️ build release
+        run: |
+          npm run build:release:${{ matrix.build.target }}
+          mkdir -p releases/
+          mv src-tauri/target/universal-apple-darwin/release/bundle/dmg/*.dmg releases/
+      - name: 📤 upload assets
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.build.target }}-${{ github.run_id }}
+          path: releases/
