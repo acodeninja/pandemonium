@@ -6,10 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "build:release": "npm run init:targets && npm run build:release:macos",
-    "build:release:macos": "npm run tauri build -- --target universal-apple-darwin",
-    "init:targets": "npm run init:targets:macos",
+    "build:release": "npm run tauri build",
+    "init:targets": "npm run init:targets:macos && npm run init:targets:linux",
     "init:targets:macos": "rustup target add x86_64-apple-darwin aarch64-apple-darwin",
+    "init:targets:linux": "rustup target add x86_64-unknown-linux-gnu",
     "preview": "vite preview",
     "tauri": "tauri",
     "prepare": "husky"
@@ -23,11 +23,14 @@
   "devDependencies": {
     "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.6.0",
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/github": "^11.0.1",
     "@tauri-apps/cli": "^2",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
     "husky": "^9.1.7",
+    "semantic-release": "^24.2.1",
     "typescript": "~5.6.2",
     "vite": "^6.0.3"
   }
