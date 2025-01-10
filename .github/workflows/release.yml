@@ -52,9 +52,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: 🏗️ build release
         run: |
-          npm run build:release
+          npm run build:release:${{ matrix.build.target }}
           mkdir -p releases/
-          mv src-tauri/target/universal-apple-darwin/release/bundle/dmg/*.dmg releases/
+      - name: 🚛 move apple bundles
+        if: matrix.build.target == 'macos'
+        run: mv src-tauri/**/*.dmg releases/
+      - name: 🚛 move linux bundles
+        if: matrix.build.target == 'linux'
+        run: |
+          mv src-tauri/**/*.deb releases/
+          mv src-tauri/**/*.rpm releases/
+          mv src-tauri/**/*.AppImage releases/
       - name: 📤 upload assets
         uses: actions/upload-artifact@v4
         with:
