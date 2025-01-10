@@ -1,2 +1,3 @@
-# pandemonium
-A customiser for the mayhem portapack firmware with some nice geographic configuration.
+# @acodeninja/pandemonium
+
+A tool for customising [Mayhem](https://github.com/portapack-mayhem) with some geographically relevant configurations and a few extra tools.
