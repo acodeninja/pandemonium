@@ -1,0 +1,24 @@
+name: 🔬 quality checks
+
+run-name: 🔬 @${{ github.triggering_actor }} is checking quality on ${{ github.ref_name }}
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - next
+
+jobs:
+  lint:
+    name: 🧹 lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 checkout
+        uses: actions/checkout@v4
+      - name: 🧰 install toolchain
+        uses: asdf-vm/actions/install@v3
+      - name: ⚙️ install dependencies
+        run: npm clean-install
+      - name: 🧹 lint
+        run: npx eslint
