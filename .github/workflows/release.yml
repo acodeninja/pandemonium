@@ -24,10 +24,13 @@ jobs:
             runner: macos-latest
           - target: linux
             runner: ubuntu-latest
+          - target: windows
+            runner: windows-latest
     steps:
       - name: 📥 checkout
         uses: actions/checkout@v4
       - name: 🧰 install toolchain
+        if: matrix.build.target != 'windows'
         uses: asdf-vm/actions/install@v3
       - name: ⚙️ install macos dependencies
         if: matrix.build.target == 'macos'

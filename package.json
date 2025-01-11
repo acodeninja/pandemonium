@@ -9,9 +9,11 @@
     "build:release": "npm run tauri build",
     "build:release:macos": "npm run tauri build -- --target universal-apple-darwin",
     "build:release:linux": "npm run tauri build -- --target x86_64-unknown-linux-gnu",
+    "build:release:windows": "npm run tauri build -- --target x86_64-pc-windows-msvc",
     "init:targets": "npm run init:targets:macos && npm run init:targets:linux",
     "init:targets:macos": "rustup target add x86_64-apple-darwin aarch64-apple-darwin",
     "init:targets:linux": "rustup target add x86_64-unknown-linux-gnu",
+    "init:targets:windows": "rustup target add x86_64-pc-windows-msvc",
     "preview": "vite preview",
     "tauri": "tauri",
     "prepare": "husky"
