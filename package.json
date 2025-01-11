@@ -17,10 +17,18 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@radix-ui/react-menubar": "^1.1.4",
+    "@radix-ui/react-scroll-area": "^1.2.2",
     "@tauri-apps/api": "^2",
     "@tauri-apps/plugin-opener": "^2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.471.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router": "^7.1.1",
+    "tailwind-merge": "^2.6.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.6.1",
@@ -28,11 +36,16 @@
     "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/github": "^11.0.1",
     "@tauri-apps/cli": "^2",
+    "@types/node": "^22.10.5",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "globals": "^15.14.0",
     "husky": "^9.1.7",
+    "postcss": "^8.4.49",
     "semantic-release": "^24.2.1",
+    "tailwindcss": "^3.4.17",
     "typescript": "~5.6.2",
     "vite": "^6.0.3"
   }
