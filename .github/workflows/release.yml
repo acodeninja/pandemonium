@@ -1,5 +1,7 @@
 name: 🚀 release
 
+run-name: 🚀 @${{ github.triggering_actor }} is publishing a new release on ${{ github.ref_name }} channel
+
 on:
   push:
     branches:
