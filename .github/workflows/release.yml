@@ -68,8 +68,8 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            import {readFile, writeFile} from 'node:fs/promises';
-            import {resolve} from 'node:path';
+            const {readFile, writeFile} = require('node:fs/promises');
+            const {resolve} = require('node:path');
 
             const cwd = process.cwd();
             let version;
