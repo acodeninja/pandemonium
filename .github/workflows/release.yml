@@ -106,6 +106,12 @@ jobs:
         run: |
           mkdir -p releases/
           mv src-tauri/target/universal-apple-darwin/release/bundle/dmg/pandemonium_*.dmg releases/
+      - name: 🚛 move windows bundles
+        if: matrix.build.target == 'windows'
+        run: |
+          mkdir -p releases\
+          mv src-tauri\target\x86_64-pc-windows-msvc\release\bundle\msi\pandemonium_0.1.0_x64_en-US.msi releases\
+          mv src-tauri\target\x86_64-pc-windows-msvc\release\bundle\nsis\pandemonium_0.1.0_x64-setup.exe releases\
       - name: 🚛 move linux bundles
         if: matrix.build.target == 'linux'
         run: |
@@ -122,6 +128,10 @@ jobs:
         if: matrix.build.target == 'macos'
         run: |
           rm -r src-tauri/target/universal-apple-darwin/release/bundle
+      - name: 🧼 tidy up windows
+        if: matrix.build.target == 'windows'
+        run: |
+          rm -r src-tauri\target\x86_64-pc-windows-msvc\release\bundle
       - name: 🧼 tidy up linux
         if: matrix.build.target == 'linux'
         run: |
