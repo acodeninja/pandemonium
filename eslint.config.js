@@ -29,6 +29,12 @@ export default [
         destructuredArrayIgnorePattern: '^_',
         varsIgnorePattern: '^_',
       }],
+      '@typescript-eslint/no-unused-vars': ['error', {
+        argsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_',
+        destructuredArrayIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+      }],
       'quote-props': ['error', 'as-needed'],
       'react/prop-types': ['off'],
       'sort-imports': ['error', {}],
