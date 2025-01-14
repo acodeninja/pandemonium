@@ -141,8 +141,8 @@ jobs:
         if: matrix.build.target == 'windows'
         run: |
           mkdir -p releases\
-          mv src-tauri\target\x86_64-pc-windows-msvc\release\bundle\msi\pandemonium_0.1.0_x64_en-US.msi releases\
-          mv src-tauri\target\x86_64-pc-windows-msvc\release\bundle\nsis\pandemonium_0.1.0_x64-setup.exe releases\
+          mv src-tauri\target\x86_64-pc-windows-msvc\release\bundle\msi\pandemonium_*.msi releases\
+          mv src-tauri\target\x86_64-pc-windows-msvc\release\bundle\nsis\pandemonium_*.exe releases\
       - name: 🚛 move linux bundles
         if: matrix.build.target == 'linux'
         run: |
