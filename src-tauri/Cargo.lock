@@ -2490,6 +2490,8 @@ dependencies = [
 name = "pandemonium"
 version = "0.1.0"
 dependencies = [
+ "log",
+ "mio",
  "mio-serial",
  "serde",
  "serde_json",
